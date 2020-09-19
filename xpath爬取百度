@@ -1,0 +1,22 @@
+```
+import requests
+from lxml import etree
+
+#url
+url = 'https://www.baidu.com/'
+#请求头
+headers = {
+    'User-Agent':'Mozilla/5.0'
+}
+#响应
+response = requests.get(url)
+content = response.content.decode('utf-8')
+#解析
+html = etree.HTML(content)
+#获取数据
+# contents = html.xpath('//div/a/text()')
+# print(contents)
+
+urls = html.xpath('//div[@id="u1"]/a/@href')
+print(urls)
+```
