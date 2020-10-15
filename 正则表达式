@@ -1,0 +1,15 @@
+```
+import re
+import requests
+url = "https://s.weibo.com/top/summary"
+headers = {"User-Agent":"Mozilla/5.0"}
+response = requests.get(url,headers=headers)
+content = response.content.decode('utf8')
+
+#获取热搜
+contents = re.findall('<td class="td-02">.*?<a.*?>(.*?)</a>',content,re.DOTALL)
+print(contents)
+
+hots = re.findall('<td class="td-02">.*?<span>(\d*)</span>',content,re.DOTALL)
+print(hots)
+```
