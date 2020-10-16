@@ -1,0 +1,21 @@
+豆瓣
+```
+import json
+import requests
+headers = {
+        'User-Agent':'Mozilla/5.0'}
+if __name__ == '__main__':
+    url = 'https://movie.douban.com/j/chart/top_list'
+    parsms = {
+        'type': '24',
+        'interval_id': '100:90',
+        'action':'',
+        'start': '0',
+        'limit':'100'
+    }
+    response = requests.get(url,params=parsms,headers=headers)
+    result=response.json()
+    fp = open('./douban.json','w',encoding='utf-8')
+    json.dump(result,fp=fp,ensure_ascii=False)
+    print(result)
+    ```
