@@ -1,0 +1,19 @@
+mport json
+import xlwt
+import requests
+headers = {
+        'User-Agent':'Mozilla/5.0'}
+if __name__ == '__main__':
+    url ='https://i.news.qq.com/trpc.qqnews_web.kv_srv.kv_srv_http_proxy/list'
+    parsms = {
+        'sub_srv_id': '24hours',
+        'srv_id': 'pc',
+        'offset': '0',
+       'limit': '20',
+        'strategy': '1',
+         'ext': '{"pool": ["top"], "is_filter": 7, "check_type": true}'
+    }
+    response = requests.get(url,params=parsms,headers=headers)
+    result=response.json()
+    fp = open('./tenxun.json','w',encoding='utf-8')
+    json.dump(result,fp=fp,ensure_ascii=False)
